@@ -24,7 +24,7 @@ class BookSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def create(self, validated_data):
-        authors_data = validated_data.get("authors_id")
+        authors_data = validated_data.pop("authors_id")
         book = models.Book.objects.create(**validated_data)
         for a in authors_data:
             book.authors.add(a)

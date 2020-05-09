@@ -12,6 +12,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_401_UNAUTHORIZED
 from . import serializers, models
 from .permissions import IsAdminOrAuthenticated
+
 # Create your views here.
 
 
@@ -38,11 +39,13 @@ class BookViewSet(viewsets.ModelViewSet):
     def rent(self, request, pk=None):
         book = models.Book.objects.filter(id=pk).first()
         if request.user.is_authenticated and book.rented_by == request.user:
-            book.is_rented = not book.is_rented
-            if book.is_rented:
-                book.rented_by = request.user
-            else:
-                book.rented_by = None
+            book.is_rented = False
+            book.rented_by = None
+            book.save()
+            return Response(status=HTTP_200_OK)
+        elif request.user.is_authenticated and book.rented_by == None:
+            book.rented_by = request.user
+            book.is_rented = True
             book.save()
             return Response(status=HTTP_200_OK)
         else:

@@ -27,5 +27,4 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
         data.update({"is_superuser": self.user.is_superuser})
-        print(data)
         return data

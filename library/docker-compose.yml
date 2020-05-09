@@ -14,5 +14,14 @@ services:
       - .:/code
     ports:
       - "8000:8000"
+    environment:
+      - INTERNAL_IPS=127.0.0.1
+      - ALLOWED_HOSTS=localhost,127.0.0.1,host.docker.internal,0.0.0.0
+      - CORS_ENABLED=True
+      - CORS_ORIGIN_ALLOW_ALL=True
+      - CORS_ORIGIN_WHITELIST=http://localhost:4200
+      - DATABASE_PATH=mydatabase
+      - CLIENT_SITE_DOMAIN=localhost:4200
+      - CLIENT_SITE_USE_HTTPS=False
     depends_on:
       - db

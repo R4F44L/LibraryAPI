@@ -88,10 +88,18 @@ WSGI_APPLICATION = 'library.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+    'default':{
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME':'hjvaimkr',
+        'USER':'hjvaimkr',
+        'PASSWORD':'D0Dr_hKHPIr4WJHj9iCTErRbaIVQ81oG',
+        'HOST':'kandula.db.elephantsql.com',
+        'PORT':'5432'
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': 'mydatabase',
+    # }
 }
 
 
